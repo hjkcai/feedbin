@@ -221,9 +221,9 @@ class EntryPresenter < BasePresenter
   end
 
   def author
-    clean_author = entry.author.present? ? @template.strip_tags(entry.author) : ""
+    clean_author = entry.author.present? && entry.author != entry.feed.title ? @template.strip_tags(entry.author) : ""
     if clean_author.present?
-      clean_author = "by " + @template.content_tag(:span, clean_author, class: "author")
+      clean_author = @template.content_tag(:span, clean_author, class: "author")
     end
     clean_author.html_safe
   end
@@ -456,21 +456,7 @@ class EntryPresenter < BasePresenter
   end
 
   def profile_image
-    if entry.tweet?
-      @template.content_tag :span, "", class: "favicon-wrap twitter-profile-image" do
-        url = tweet_profile_image_uri(entry.tweet.main_tweet)
-        fallback = @template.image_url("favicon-profile-default.png")
-        @template.image_tag_with_fallback(fallback, url, alt: "")
-      end
-    elsif entry.micropost? && entry.micropost.author_avatar
-      @template.content_tag :span, "", class: "favicon-wrap twitter-profile-image" do
-        fallback = @template.image_url("favicon-profile-default.png")
-        url = RemoteFile.signed_url(entry.micropost.author_avatar)
-        @template.image_tag_with_fallback(fallback, url, alt: "")
-      end
-    else
-      favicon(entry.feed, entry)
-    end
+    favicon(entry.feed, entry)
   end
 
   def summary

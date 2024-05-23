@@ -756,19 +756,19 @@ $.extend feedbin,
       datePublished = $(@).attr('datetime')
       datePublished = new Date(datePublished)
       if datePublished > now
-        $(@).text('the future')
-      else if (now - datePublished) < feedbin.ONE_DAY * 7
-        $(@).timeago()
+        $(@).text('The Future')
+      else if now.toLocaleDateString() == datePublished.toLocaleDateString()
+        $(@).text(datePublished.format("%H:%M"))
       else if datePublished.getFullYear() == now.getFullYear()
-        $(@).text(datePublished.format("%e %b"))
+        $(@).text(datePublished.format("%m-%d %H:%M"))
       else
-        $(@).text(datePublished.format("%e %b %Y"))
+        $(@).text(datePublished.format("%Y-%m-%d %H:%M"))
 
   entryTime: ->
     $(".post-meta time").each ->
       date = $(@).attr('datetime')
       date = new Date(date)
-      $(@).text(date.format("%B %e, %Y at %l:%M %p"))
+      $(@).text(date.format("%Y-%m-%d %H:%M"))
 
   applyUserTitles: (cached = true) ->
     textarea = document.createElement("textarea")
