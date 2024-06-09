@@ -722,6 +722,7 @@ $.extend feedbin,
           src = 'camo-src'
         else
           src = 'canonical-src'
+        $(@).attr("loading", "lazy")
         $(@).attr("src", $(@).data(src))
       feedbin.preloadedImageIds.push(id)
 
@@ -907,6 +908,7 @@ $.extend feedbin,
 
     $("img[data-camo-src]", context).each ->
       img = $(@)
+      img.attr('loading', 'lazy')
 
       if feedbin.data.proxy_images
         src = 'camo-src'
