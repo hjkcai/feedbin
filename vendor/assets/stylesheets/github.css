@@ -33,7 +33,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   }
   .hljs-section{
       color:#005cc5;
-      font-weight:700
+      font-weight: 600
   }
   .hljs-bullet{
       color:#735c0f
@@ -44,7 +44,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   }
   .hljs-strong{
       color:#24292e;
-      font-weight:700
+      font-weight: 600
   }
   .hljs-addition{
       color:#22863a;
