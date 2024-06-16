@@ -948,7 +948,7 @@ $hamburger-dot: 4px;
   .selected-view-mode {
     margin: 0;
     @include font-size(24);
-    font-weight: bold;
+    font-weight: 600;
     line-height: 1.1;
     @include color($color-contrast-700);
     transition: transform 0.2s ease;
@@ -1212,7 +1212,7 @@ $hamburger-dot: 4px;
         top: 0;
         bottom: 0;
         .feed-action-clear {
-          font-weight: bold;
+          font-weight: 600;
           @include color($color-contrast-400);
           @include font-size(12);
           display: block;
@@ -1458,7 +1458,7 @@ $hamburger-dot: 4px;
       @include font-size(12);
       @include size-in-rems(padding-top, 22);
       @include color($color-contrast-500);
-      font-weight: bold;
+      font-weight: 600;
       display: flex;
       align-items: center;
       svg {
@@ -1701,7 +1701,7 @@ li.selected > a .favicon-wrap,
   }
   .feed-title-wrap {
     @include color($color-contrast-700);
-    font-weight: bold;
+    font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1860,7 +1860,7 @@ li.selected > a .favicon-wrap,
     }
     .title {
       @include font-size(15);
-      font-weight: bold;
+      font-weight: 600;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
@@ -2009,7 +2009,7 @@ li.selected > a .favicon-wrap,
 
 @mixin title-font {
   @include font-size(14);
-  font-weight: bold;
+  font-weight: 600;
   @include color($color-contrast-600, $root: true);
 }
 
@@ -2332,7 +2332,7 @@ $feed-title-width: 115px;
 
   h3 {
     @include font-size(14);
-    font-weight: bold;
+    font-weight: 600;
     margin: 24px 16px 16px 16px;
   }
   .control-group {
@@ -3189,7 +3189,7 @@ $feed-title-width: 115px;
   h2 {
     @include font-size(16);
     @include color($color-contrast-700);
-    font-weight: bold;
+    font-weight: 600;
     margin: 0 0 0 0;
   }
   .sharing-header {
@@ -3303,7 +3303,7 @@ $feed-title-width: 115px;
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
   strong {
-    font-weight: 700;
+    font-weight: 600;
     font-style: normal;
   }
 
@@ -3317,7 +3317,7 @@ $feed-title-width: 115px;
   h4,
   h5,
   h6 {
-    font-weight: bold;
+    font-weight: 600;
     font-style: normal;
     margin: 2em 0 1em 0;
     text-rendering: optimizeLegibility;
@@ -3490,7 +3490,7 @@ $feed-title-width: 115px;
     .ignore-updates {
       @include color($color-contrast-400);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       float: right;
       @include font-size(16);
       line-height: 1;
@@ -3551,7 +3551,7 @@ $feed-title-width: 115px;
     .original-title,
     .original-title a {
       @include font-size(14);
-      font-weight: bold;
+      font-weight: 600;
       @include color($color-contrast-700);
       margin-bottom: 0.3em;
       &:hover {
@@ -3767,7 +3767,7 @@ $feed-title-width: 115px;
     padding: 8px;
   }
   strong {
-    font-weight: 700 !important;
+    font-weight: 600 !important;
   }
 }
 
@@ -3892,7 +3892,7 @@ $feed-title-width: 115px;
     line-height: 1;
     border-radius: 8px;
     z-index: 1;
-    font-weight: bold !important;
+    font-weight: 600 !important;
     background-color: rgba(black, 0.3);
     backdrop-filter: blur(8px);
     @include font-size(14);
@@ -3949,7 +3949,7 @@ $feed-title-width: 115px;
     }
   }
   .embed-title {
-    font-weight: bold !important;
+    font-weight: 600 !important;
     @include font-size(14);
     display: block;
     @include color($theme-color-midnight-700);
@@ -3990,7 +3990,7 @@ dialog .content-styles a {
     font-weight: 400;
     font-style: normal;
     strong {
-      font-weight: 700;
+      font-weight: 600;
     }
     em {
       font-style: italic;
@@ -4027,15 +4027,15 @@ dialog .content-styles a {
     h4,
     h5,
     h6 {
-      font-weight: 700;
+      font-weight: 600;
       font-family: "Whitney SSm A", "Whitney SSm B", $font-stack;
       strong {
-        font-weight: 700;
+        font-weight: 600;
       }
     }
   }
   .entry-header h1 {
-    font-weight: 700;
+    font-weight: 600;
     font-family: "Whitney SSm A", "Whitney SSm B", $font-stack;
   }
 }
@@ -4046,7 +4046,7 @@ dialog .content-styles a {
     font-weight: 400;
     font-style: normal;
     strong {
-      font-weight: 700;
+      font-weight: 600;
     }
     em {
       font-style: italic;
@@ -4057,7 +4057,7 @@ dialog .content-styles a {
     }
   }
   .entry-header h1 {
-    font-weight: 700;
+    font-weight: 600;
     font-family: ui-sans-serif, system-ui, $font-stack;
   }
 }
@@ -4068,7 +4068,7 @@ dialog .content-styles a {
     font-weight: 400;
     font-style: normal;
     strong {
-      font-weight: 700;
+      font-weight: 600;
     }
     em {
       font-style: italic;
@@ -4076,7 +4076,7 @@ dialog .content-styles a {
   }
   .entry-header h1 {
     font-family: "Whitney SSm A", "Whitney SSm B", $font-stack;
-    font-weight: 700;
+    font-weight: 600;
   }
 }
 
@@ -4408,7 +4408,7 @@ img.responsive {
         text-overflow: ellipsis;
         white-space: nowrap;
         strong {
-          font-weight: bold;
+          font-weight: 600;
           @include color($color-contrast-700);
         }
       }
@@ -4835,7 +4835,7 @@ Settings
     margin-bottom: 4px;
   }
   .nav-header {
-    font-weight: bold;
+    font-weight: 600;
     display: flex;
     align-items: center;
     margin: 16px 0;
@@ -5705,7 +5705,7 @@ Login and Sign Up
   }
   .box-header {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
     text-align: center;
     margin: 0 0 15px 0;
     @include color($color-contrast-700, $root: true);
@@ -5903,7 +5903,7 @@ Media Players
       line-height: 1.4;
     }
     .entry-feed-title {
-      font-weight: bold;
+      font-weight: 600;
       @include color($color-contrast-700);
     }
     .audio-title,
@@ -6230,7 +6230,7 @@ Media Players
     box-sizing: content-box;
     color: white;
     font-size: 11px;
-    font-weight: bold;
+    font-weight: 600;
     height: 24px;
     overflow: hidden;
     padding: 16px 6px 0;
@@ -6440,7 +6440,7 @@ Bigfoot
     )
   );
   font-size: 70%;
-  font-weight: bold;
+  font-weight: 600;
 }
 .footnote-circle {
   @include fill($color-icons);
