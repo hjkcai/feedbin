@@ -2731,6 +2731,8 @@ $.extend feedbin,
         selection = feedbin.getSelectedText()
         if selection != ""
           data.text = selection
+        else
+          data.text = $('.entry-final-content > :not(.hide)').text().trim()
 
         navigator.share(data).catch (error) ->
           console.log error

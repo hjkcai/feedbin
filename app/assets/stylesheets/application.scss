@@ -3367,6 +3367,10 @@ $feed-title-width: 115px;
     }
   }
 
+  b, strong {
+    font-weight: 600;
+  }
+
   blockquote[align="center"] {
     text-align: left;
   }
@@ -3415,6 +3419,13 @@ $feed-title-width: 115px;
   samp {
     font-family: Inconsolata, ui-monospace, "SF Mono", Consolas, Monaco, monospace;
     overflow-x: scroll;
+    padding: 2px 5px;
+    background-color: #0000000d;
+    border-radius: 4px;
+
+    &:first-child {
+      margin-inline-start: 0;
+    }
   }
 
   blockquote {
