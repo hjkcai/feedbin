@@ -7,7 +7,7 @@ class AddShowUpdatesAndMutedToSubscriptions < ActiveRecord::Migration[4.2]
     change_column_default(:subscriptions, :muted, false)
 
     Subscription.reset_column_information
-    SubscriptionBatchScheduler.perform_async
+    # SubscriptionBatchScheduler.perform_async
   end
 
   def down
