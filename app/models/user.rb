@@ -108,8 +108,8 @@ class User < ApplicationRecord
 
   validate :changed_password, on: :update, unless: ->(user) { user.password_reset }
   validate :coupon_code_valid, on: :create, if: ->(user) { user.coupon_code }
-  validate :plan_type_valid, on: :update
-  validate :trial_plan_valid
+  # validate :plan_type_valid, on: :update
+  # validate :trial_plan_valid
 
   validates_presence_of :email
   validates_uniqueness_of :email, case_sensitive: false
@@ -319,13 +319,13 @@ class User < ApplicationRecord
   end
 
   def create_customer
-    @stripe_customer = Customer.create(email, plan.stripe_id, trial_end)
-    self.customer_id = @stripe_customer.id
-    if coupon_code
-      coupon_record = Coupon.find_by_coupon_code(coupon_code)
-      coupon_record.update(redeemed: true)
-      self.coupon = coupon_record
-    end
+    # @stripe_customer = Customer.create(email, plan.stripe_id, trial_end)
+    # self.customer_id = @stripe_customer.id
+    # if coupon_code
+    #   coupon_record = Coupon.find_by_coupon_code(coupon_code)
+    #   coupon_record.update(redeemed: true)
+    #   self.coupon = coupon_record
+    # end
   end
 
   def update_billing

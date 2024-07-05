@@ -1,7 +1,7 @@
 class SiteController < ApplicationController
   skip_before_action :authorize, only: [:index, :manifest, :service_worker, :auto_sign_in]
   skip_before_action :verify_authenticity_token, only: [:service_worker]
-  before_action :check_user, if: :signed_in?
+  # before_action :check_user, if: :signed_in?
 
   def index
     if signed_in?
