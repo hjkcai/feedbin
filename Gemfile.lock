@@ -436,6 +436,8 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
+    nokogiri (1.16.5-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.16.5-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.5-x86_64-darwin)
@@ -639,6 +641,8 @@ GEM
     strong_migrations (1.8.0)
       activerecord (>= 5.2)
     strscan (3.1.0)
+    tailwindcss-rails (2.6.0-aarch64-linux)
+      railties (>= 7.0.0)
     tailwindcss-rails (2.6.0-arm64-darwin)
       railties (>= 7.0.0)
     tailwindcss-rails (2.6.0-x86_64-darwin)
@@ -687,6 +691,7 @@ GEM
     zeitwerk (2.6.14)
 
 PLATFORMS
+  aarch64-linux-musl
   arm64-darwin-20
   arm64-darwin-22
   arm64-darwin-23
