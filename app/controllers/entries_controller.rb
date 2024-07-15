@@ -3,6 +3,7 @@ class EntriesController < ApplicationController
   skip_before_action :authorize, only: [:push_view, :newsletter]
 
   def index
+    get_feeds_list
     @user = current_user
 
     @feed_ids = @user.subscriptions.pluck(:feed_id)
