@@ -1,4 +1,7 @@
 var callback = function() {
+    feedbin.count_data = <%= raw json_escape(@count_data.to_json) %>;
+    feedbin.Counts.get(feedbin.count_data);
+
     <% if @entries.length == 0 %>
         var entries = "<%= j render partial: "entries/no_entry" %>";
     <% else %>
