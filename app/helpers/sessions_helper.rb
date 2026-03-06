@@ -10,7 +10,7 @@ module SessionsHelper
 
   def current_user
     @current_user ||= begin
-      if request.subdomain == "api"
+      if api_request?
         authenticate_with_http_basic do |username, password|
           User.where("lower(email) = ?", username.try(:downcase)).take.try(:authenticate, password)
         end
@@ -22,7 +22,7 @@ module SessionsHelper
 
   def authorize
     unless signed_in?
-      if request.subdomain == "api"
+      if api_request?
         request_http_basic_authentication
       else
         flash[:notice] = "Please sign in."
@@ -58,5 +58,11 @@ module SessionsHelper
 
   def clear_location
     session.delete(:return_to)
+  end
+
+  private
+
+  def api_request?
+    request.host == "feedapi.hjk.is"
   end
 end
