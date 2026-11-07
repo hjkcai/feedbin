@@ -50,7 +50,9 @@ Rails.application.configure do
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
-  config.assume_ssl = true
+  # 本地通过 http 直连时（FORCE_SSL=false）不能再假设 SSL，否则生成的 URL
+  # 和重定向都会指向 https。生产仍走 Nginx 终止 TLS，保持默认 true。
+  config.assume_ssl = !(ENV["FORCE_SSL"] == "false")
 
    # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = !(ENV["FORCE_SSL"] == "false")

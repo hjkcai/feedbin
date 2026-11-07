@@ -1,27 +1,27 @@
 source "https://rubygems.org"
-git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 # load first so environment is initialized
 gem "dotenv-rails", "= 2.8.1"
 
-gem "llhttp", github: "benubois/llhttp",
-              branch: "memory_corruption",
-              glob: "mri/*.gemspec"
+# 以下仓库在部署时需要带上 feedbin 自己的分支，原先走 github: 来源。
+# 为避免构建期访问 GitHub，这里指向 projects/git-gems 下的本地 submodule 副本，
+# 版本仍由 Gemfile.lock 固定；换回 GitHub 只需恢复 github: 参数。
+gem "llhttp", path: "../../projects/git-gems/llhttp/mri"
 
 gem "rails", "8.1.4.1"
 gem "will_paginate"
 
-gem "http",            github: "benubois/http",           branch: "feedbin"
-gem "carrierwave",     github: "feedbin/carrierwave",     branch: "feedbin"
-gem "sax-machine",     github: "feedbin/sax-machine",     branch: "feedbin"
-gem "feedjira",        github: "feedbin/feedjira",        branch: "f2"
-gem "feedkit",         github: "feedbin/feedkit",         branch: "main"
-gem "twitter",         github: "feedbin/twitter",         branch: "feedbin"
-gem "html-pipeline",   github: "feedbin/html-pipeline",   branch: "feedbin"
-gem "html_diff",       github: "feedbin/html_diff",       branch: "feedbin"
-gem "twitter-text",    github: "feedbin/twitter-text",    branch: "feedbin", glob: "rb/*.gemspec"
-gem "librato-metrics", github: "feedbin/librato-metrics", branch: "feedbin"
-gem "librato-rails",   github: "feedbin/librato-rails",   branch: "feedbin"
+gem "http",            path: "../../projects/git-gems/http"
+gem "carrierwave",     path: "../../projects/git-gems/carrierwave"
+gem "sax-machine",     path: "../../projects/git-gems/sax-machine"
+gem "feedjira",        path: "../../projects/git-gems/feedjira"
+gem "feedkit",         path: "../../projects/git-gems/feedkit"
+gem "twitter",         path: "../../projects/git-gems/twitter"
+gem "html-pipeline",   path: "../../projects/git-gems/html-pipeline"
+gem "html_diff",       path: "../../projects/git-gems/html_diff"
+gem "twitter-text",    path: "../../projects/git-gems/twitter-text/rb"
+gem "librato-metrics", path: "../../projects/git-gems/librato-metrics"
+gem "librato-rails",   path: "../../projects/git-gems/librato-rails"
 
 gem "activerecord-import"
 gem "addressable", require: "addressable/uri"
@@ -82,7 +82,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "stripe-ruby-mock", github: "feedbin/stripe-ruby-mock", branch: "feedbin", require: "stripe_mock"
+  gem "stripe-ruby-mock", path: "../../projects/git-gems/stripe-ruby-mock", require: "stripe_mock"
   gem "byebug", platforms: [:mri, :windows]
   gem "capybara"
   # Load only the prelude so binding.break works without starting a debugger
