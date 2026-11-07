@@ -4,24 +4,24 @@ source "https://rubygems.org"
 gem "dotenv-rails", "= 2.8.1"
 
 # 以下仓库在部署时需要带上 feedbin 自己的分支，原先走 github: 来源。
-# 为避免构建期访问 GitHub，这里指向 projects/git-gems 下的本地 submodule 副本，
+# 为避免构建期访问 GitHub，这里指向 gems 下的本地 submodule 副本，
 # 版本仍由 Gemfile.lock 固定；换回 GitHub 只需恢复 github: 参数。
-gem "llhttp", path: "../../projects/git-gems/llhttp/mri"
+gem "llhttp", path: "../../gems/llhttp/mri"
 
 gem "rails", "8.1.4.1"
 gem "will_paginate"
 
-gem "http",            path: "../../projects/git-gems/http"
-gem "carrierwave",     path: "../../projects/git-gems/carrierwave"
-gem "sax-machine",     path: "../../projects/git-gems/sax-machine"
-gem "feedjira",        path: "../../projects/git-gems/feedjira"
-gem "feedkit",         path: "../../projects/git-gems/feedkit"
-gem "twitter",         path: "../../projects/git-gems/twitter"
-gem "html-pipeline",   path: "../../projects/git-gems/html-pipeline"
-gem "html_diff",       path: "../../projects/git-gems/html_diff"
-gem "twitter-text",    path: "../../projects/git-gems/twitter-text/rb"
-gem "librato-metrics", path: "../../projects/git-gems/librato-metrics"
-gem "librato-rails",   path: "../../projects/git-gems/librato-rails"
+gem "http",            path: "../../gems/http"
+gem "carrierwave",     path: "../../gems/carrierwave"
+gem "sax-machine",     path: "../../gems/sax-machine"
+gem "feedjira",        path: "../../gems/feedjira"
+gem "feedkit",         path: "../../gems/feedkit"
+gem "twitter",         path: "../../gems/twitter"
+gem "html-pipeline",   path: "../../gems/html-pipeline"
+gem "html_diff",       path: "../../gems/html_diff"
+gem "twitter-text",    path: "../../gems/twitter-text/rb"
+gem "librato-metrics", path: "../../gems/librato-metrics"
+gem "librato-rails",   path: "../../gems/librato-rails"
 
 gem "activerecord-import"
 gem "addressable", require: "addressable/uri"
@@ -82,7 +82,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "stripe-ruby-mock", path: "../../projects/git-gems/stripe-ruby-mock", require: "stripe_mock"
+  gem "stripe-ruby-mock", path: "../../gems/stripe-ruby-mock", require: "stripe_mock"
   gem "byebug", platforms: [:mri, :windows]
   gem "capybara"
   # Load only the prelude so binding.break works without starting a debugger
