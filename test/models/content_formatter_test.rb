@@ -362,6 +362,35 @@ class ContentFormatterTest < ActiveSupport::TestCase
     assert_includes result, "data-canonical-src"
   end
 
+  # RSSHub pairs each English paragraph with its Chinese translation, and the
+  # reading view toggles the second one by these two attributes.
+  test "format! keeps the translation markers that pair the two sides" do
+    content = %(<p data-news-role="source" data-news-paragraph="1">English</p><p data-news-role="translation" data-news-paragraph="1">中文</p>)
+
+    result = ContentFormatter.format!(content)
+
+    assert_includes result, %(data-news-role="source" data-news-paragraph="1")
+    assert_includes result, %(data-news-role="translation" data-news-paragraph="1")
+  end
+
+  test "format! drops translation markers outside the expected shape" do
+    content = %(<p data-news-role="translation" data-news-paragraph="intro">a</p><p data-news-role="other" data-news-paragraph="2">b</p>)
+
+    result = ContentFormatter.format!(content)
+
+    assert_not_includes result, "data-news-role"
+    assert_not_includes result, "data-news-paragraph"
+  end
+
+  test "format! drops other data attributes next to a translation marker" do
+    content = %(<p data-news-role="source" data-news-paragraph="1" data-behavior="evil">a</p>)
+
+    result = ContentFormatter.format!(content)
+
+    assert_includes result, %(data-news-role="source")
+    assert_not_includes result, "data-behavior"
+  end
+
   # 044 — the allowlist admits these attributes but named no protocols for them.
   test "text_email refuses a javascript iframe src" do
     result = ContentFormatter.text_email(%(<iframe src="javascript:alert(document.domain)"></iframe>))

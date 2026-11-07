@@ -515,6 +515,7 @@ class EntryPresenter < BasePresenter
       header_title: pages ? entry.hostname.to_s : toolbar_header_title,
       pages: pages,
       subscribed: !pages && subscriptions.include?(entry.feed_id),
+      translated: entry.translated?,
       favicon: favicon(entry.feed, entry).to_s
     }
   end

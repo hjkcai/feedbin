@@ -26,6 +26,15 @@ class EntryTest < ActiveSupport::TestCase
     assert_not_nil(@entry.reload.summary)
   end
 
+  test "translated? is true only when the body carries the translation markers" do
+    @entry.save
+    assert_not @entry.reload.translated?
+
+    @entry.update(content: %(<p data-news-role="source" data-news-paragraph="1">English</p><p data-news-role="translation" data-news-paragraph="1">中文</p>))
+
+    assert @entry.reload.translated?
+  end
+
   test "should update summary" do
     @entry.save
     summary = @entry.reload.summary

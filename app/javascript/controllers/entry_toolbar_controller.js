@@ -23,6 +23,7 @@ export default class extends Controller {
     loading: Boolean,
     pages: Boolean,
     subscribed: Boolean,
+    translated: Boolean,
     starredUrl: String,
     unreadUrl: String,
     extractUrl: String,
@@ -58,6 +59,7 @@ export default class extends Controller {
     this.feedIdValue = data.feed_id
     this.pagesValue = data.pages
     this.subscribedValue = data.subscribed
+    this.translatedValue = data.translated
     this.starredValue = feedbin.Counts.get().isStarred(data.id)
     // Opening an entry marks it read.
     this.readValue = true
@@ -92,6 +94,18 @@ export default class extends Controller {
 
     this.readValue = window.feedbin.countsBehavior.toggleRead(id, this.feedIdValue)
     post(this.entryUrl(this.unreadUrlValue, id), { responseKind: "json" }).catch(() => {})
+  }
+
+  // The bilingual pair is in the content already: the default view shows the
+  // original with each translation hidden, and this adds the translations back,
+  // one Chinese paragraph after every English one. Nothing is requested, so it
+  // works on an archived entry.
+  toggleTranslation() {
+    const id = this.entryIdValue
+    if (!id) return
+
+    this.translatedValue = !this.translatedValue
+    document.body.classList.toggle("translation-active", this.translatedValue)
   }
 
   // feedbin.readability() sends {automatic: true} for a feed with sticky
@@ -215,6 +229,7 @@ export default class extends Controller {
     this.loadingValue = false
     this.pagesValue = false
     this.subscribedValue = false
+    this.translatedValue = false
     this.headerTargets.forEach((header) => header.replaceChildren())
     this.feedLinkTarget.removeAttribute("href")
     this.sourceLinkTarget.value = ""

@@ -179,6 +179,11 @@ class feedbin.Keyboard
       window.dispatchEvent(new CustomEvent("entry-toolbar:extract"))
       event.preventDefault()
 
+    # Show translation alongside the original
+    Mousetrap.bind 't', (event, combo) =>
+      window.dispatchEvent(new CustomEvent("entry-toolbar:translate"))
+      event.preventDefault()
+
     # Go to unread
     Mousetrap.bind ['g 1', 'g u'], (event, combo) =>
       $('body').removeClass('full-screen')

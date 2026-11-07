@@ -14,6 +14,9 @@ module App
     # buttons would act on nothing, or on a share menu for an earlier entry.
     ENTRY_CONTROL = "group-data-[entry-toolbar-entry-id-value=0]:tw-hidden"
 
+    # The translation switch only means something on an entry that has one.
+    TRANSLATED_CONTROL = "group-data-[entry-toolbar-translated-value=false]:tw-hidden"
+
     def view_template
       div class: "toolbar-wrap group", data: controller_data do
         textarea id: "source_link_field", name: "source_link_field", class: "visually-hidden", data: stimulus_item(target: :source_link, for: STIMULUS_CONTROLLER)
@@ -38,6 +41,7 @@ module App
           loading: "false",
           pages: "false",
           subscribed: "false",
+          translated: "false",
           starred_url: starred_entries_entry_path(ENTRY_ID),
           unread_url: unread_entries_entry_path(ENTRY_ID),
           extract_url: entry_extract_path(ENTRY_ID),
@@ -49,7 +53,8 @@ module App
           "entry-toolbar:show@window" => "show",
           "entry-toolbar:star@window" => "toggleStarred",
           "entry-toolbar:read@window" => "toggleRead",
-          "entry-toolbar:extract@window" => "toggleExtract"
+          "entry-toolbar:extract@window" => "toggleExtract",
+          "entry-toolbar:translate@window" => "toggleTranslation"
         }
       )
     end
@@ -84,6 +89,12 @@ module App
         end
 
         render partial("sharing_services/sharing_service_button", wrap_class: ENTRY_CONTROL)
+
+        div class: "entry-button-wrap #{ENTRY_CONTROL} #{TRANSLATED_CONTROL}" do
+          toolbar_button(action: :toggle_translation, class: "entry-button button-toggle-translation", title: "Show translation <i>t</i>") do
+            Icon("icon-translation")
+          end
+        end
 
         div class: "entry-button-wrap #{ENTRY_CONTROL}" do
           toolbar_button(action: :toggle_extract, class: "entry-button button-toggle-content", title: "Extract full content <i>c</i>") do

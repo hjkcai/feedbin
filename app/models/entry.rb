@@ -100,6 +100,12 @@ class Entry < ApplicationRecord
     feed.newsletter?
   end
 
+  # A body RSSHub translated carries the Chinese paragraph after each English
+  # one. The reading view offers the switch only on entries that have it.
+  def translated?
+    content.to_s.include?('data-news-role="translation"')
+  end
+
   def youtube?
     data && data["youtube_video_id"].present?
   end

@@ -4524,6 +4524,23 @@ body:has(dialog[open]) > .notification {
   }
 }
 
+// The Chinese paragraph follows the English one it translates, so it reads as
+// a pair rather than as a second article. Text entries only: the markers do not
+// survive an extract of another site's page.
+.content-styles {
+  [data-news-role="translation"] {
+    @include color($color-contrast-500);
+    border-left: 2px solid;
+    @include border-color($color-contrast-200);
+    margin-top: -0.4em;
+    padding-left: 12px;
+    display: none;
+  }
+  .translation-active & [data-news-role="translation"] {
+    display: block;
+  }
+}
+
 .extract-active .content-option-form {
   display: none;
 }
