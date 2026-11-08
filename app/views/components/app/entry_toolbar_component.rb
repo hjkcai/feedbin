@@ -15,6 +15,9 @@ module App
     ENTRY_CONTROL = "group-data-[entry-toolbar-entry-id-value=0]:tw-hidden"
 
     # The translation switch only means something on an entry that has one.
+    # translated is "this entry has a translation"; translation_visible is the
+    # reader's current choice. Keeping them apart lets the switch start off,
+    # instead of doubling as "already on" on the first press.
     TRANSLATED_CONTROL = "group-data-[entry-toolbar-translated-value=false]:tw-hidden"
 
     def view_template
@@ -42,6 +45,7 @@ module App
           pages: "false",
           subscribed: "false",
           translated: "false",
+          translation_visible: "false",
           starred_url: starred_entries_entry_path(ENTRY_ID),
           unread_url: unread_entries_entry_path(ENTRY_ID),
           extract_url: entry_extract_path(ENTRY_ID),

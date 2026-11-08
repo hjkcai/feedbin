@@ -12,7 +12,7 @@ class EntryToolbarComponentTest < ComponentTestCase
     assert_equal "/settings/sticky/FEED_ID", root["data-entry-toolbar-sticky-url-value"]
     assert_equal "/subscriptions/FEED_ID/edit?app=true", root["data-entry-toolbar-edit-subscription-url-value"]
     assert_equal "0", root["data-entry-toolbar-entry-id-value"]
-    %w[starred read extract loading pages subscribed translated].each do |name|
+    %w[starred read extract loading pages subscribed translated translation_visible].each do |name|
       assert_equal "false", root["data-entry-toolbar-#{name}-value"], name
     end
   end
@@ -21,8 +21,17 @@ class EntryToolbarComponentTest < ComponentTestCase
     switch = toolbar.at_css(".button-toggle-translation")
 
     assert switch
-    assert_includes toolbar.at_css(".button-toggle-translation").parent["class"], "group-data-[entry-toolbar-translated-value=false]:tw-hidden"
-    assert toolbar.at_css("svg.icon-translation")
+    assert_includes switch.parent["class"], "group-data-[entry-toolbar-translated-value=false]:tw-hidden"
+    assert switch.at_css("svg.icon-translation")
+  end
+
+  # translated says the entry has a translation, translationVisible says one is
+  # showing. Sharing one value made the first press a no-op.
+  test "the translation switch reads the entry state, not the display state" do
+    root = toolbar.at_css("[data-controller~='entry-toolbar']")
+
+    assert_equal "false", root["data-entry-toolbar-translated-value"]
+    assert_equal "false", root["data-entry-toolbar-translation-visible-value"]
   end
 
   test "has no forms" do

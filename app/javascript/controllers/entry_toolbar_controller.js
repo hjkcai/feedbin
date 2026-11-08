@@ -24,6 +24,7 @@ export default class extends Controller {
     pages: Boolean,
     subscribed: Boolean,
     translated: Boolean,
+    translationVisible: Boolean,
     starredUrl: String,
     unreadUrl: String,
     extractUrl: String,
@@ -60,6 +61,10 @@ export default class extends Controller {
     this.pagesValue = data.pages
     this.subscribedValue = data.subscribed
     this.translatedValue = data.translated
+    // Another entry's choice is not this entry's. The switch starts off on
+    // every entry, which is also what a reload renders.
+    this.translationVisibleValue = false
+    document.body.classList.remove("translation-active")
     this.starredValue = feedbin.Counts.get().isStarred(data.id)
     // Opening an entry marks it read.
     this.readValue = true
@@ -96,16 +101,18 @@ export default class extends Controller {
     post(this.entryUrl(this.unreadUrlValue, id), { responseKind: "json" }).catch(() => {})
   }
 
-  // The bilingual pair is in the content already: the default view shows the
-  // original with each translation hidden, and this adds the translations back,
-  // one Chinese paragraph after every English one. Nothing is requested, so it
-  // works on an archived entry.
+  // The bilingual pair is in the content already: every English block keeps its
+  // Chinese translation next to it, hidden until this switch turns it on.
+  // Nothing is requested, so it works on an archived entry.
   toggleTranslation() {
     const id = this.entryIdValue
     if (!id) return
 
-    this.translatedValue = !this.translatedValue
-    document.body.classList.toggle("translation-active", this.translatedValue)
+    // translated is "this entry has a translation"; this only reports whether
+    // one is showing. Starting it from translatedValue made the first press a
+    // no-op on every entry that had one.
+    this.translationVisibleValue = !this.translationVisibleValue
+    document.body.classList.toggle("translation-active", this.translationVisibleValue)
   }
 
   // feedbin.readability() sends {automatic: true} for a feed with sticky
@@ -230,6 +237,8 @@ export default class extends Controller {
     this.pagesValue = false
     this.subscribedValue = false
     this.translatedValue = false
+    this.translationVisibleValue = false
+    document.body.classList.remove("translation-active")
     this.headerTargets.forEach((header) => header.replaceChildren())
     this.feedLinkTarget.removeAttribute("href")
     this.sourceLinkTarget.value = ""

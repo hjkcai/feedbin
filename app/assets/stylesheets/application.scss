@@ -2773,6 +2773,12 @@ $feed-title-width: 115px;
       }
     }
   }
+  .button-toggle-translation {
+    width: 46px;
+    [data-entry-toolbar-translation-visible-value="true"] & * {
+      fill: $color-accent-blue-600;
+    }
+  }
   .button-toggle-share-menu, .mute-filter-button {
     position: relative;
     @include arrow(
